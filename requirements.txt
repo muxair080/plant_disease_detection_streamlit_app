@@ -2,6 +2,4 @@ streamlit
 numpy
 Pillow
 tensorflow
-opencv-python
-libgl1-mesa-glx
-libglib2.0-0
+opencv-python-headless
