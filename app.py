@@ -5,9 +5,9 @@ from PIL import Image
 import tensorflow as tf
 import base64
 import cv2
-MODEL = tf.keras.models.load_model('./photato_trained_models/1/')
+MODEL = tf.keras.models.load_model('./potato_trained_models/1/')
 TOMATO_MODEL = tf.keras.models.load_model('./tomato_trained_models/1')
-PEEPER_MODEL = tf.keras.models.load_model('./pepeer_trained_models/1')
+PEEPER_MODEL = tf.keras.models.load_model('./pepper_trained_models/1')
 class_names = ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']
 Tomato_classes = ['Tomato_healthy', 'Tomato_Spider_mites_Two_spotted_spider_mite', 'Tomato__Target_Spot', 'Tomato_Septoria_leaf_spot',
  'Tomato__Tomato_mosaic_virus', 'Tomato_Leaf_Mold', 'Tomato_Bacterial_spot', 'Tomato_Late_blight',
@@ -19,7 +19,7 @@ st.set_page_config(
 )
 st.title("Plant Disease Detection")
 st.write("This application is detecting disease in three plants photato, tomato and pepper")
-options = ["Select One Plant","Tomato", "Photato", "Pepper"]
+options = ["Select One Plant","Tomato", "Potato", "Pepper"]
 
     # Create a selectbox for the user to choose one option
 selected_option = st.selectbox("Select Plant:", options)
@@ -33,7 +33,7 @@ def read_file_as_image(data)->np.array:
     image = cv2.resize(image, (256,256))
     return image
 
-async def photato():
+async def potato():
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
         st.image(image, caption="Uploaded Image", width=250)
@@ -61,7 +61,7 @@ async def tomato():
         st.write("Predicted Class : ", predicted_class, " Confidence Level : ", confidence)
 
 
-async def peeper():
+async def pepper():
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
 
@@ -81,11 +81,11 @@ import asyncio
 if __name__ == "__main__":
     # if st.button('Predict'):
     
-        if selected_option == 'Photato':
-            asyncio.run(photato())
+        if selected_option == 'Potato':
+            asyncio.run(potato())
         elif selected_option == 'Tomato':
             asyncio.run(tomato())
         elif selected_option == 'pepper':
-                asyncio.run(peeper())
+                asyncio.run(pepper())
         else:
             st.write("not avalible")
